@@ -12,7 +12,7 @@ def index():
     try:
         pass
     except Exception as e:
-        raise SalesException (e,sys) from E    
+        raise SalesException (e,sys) from e 
 
 
 if __name__ == "__main__":
