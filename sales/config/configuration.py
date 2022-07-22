@@ -1,5 +1,5 @@
 from sales.entity.config_entity import DataIngestionConfig, DataTransformationConfig,DataValidationConfig,   \
-ModelTrainerConfig,ModelEvaluationConfig,ModelPusherConfig, TrainingPipelineConfig
+ModelTrainerConfig,ModelEvaluationConfig,ModelPusherConfig,TrainingPipelineConfig
 from sales.util.util import read_yaml_file
 from sales.logger import logging
 import sys,os
@@ -13,13 +13,16 @@ class Configuration:
         config_file_path:str =CONFIG_FILE_PATH,
         current_time_stamp:str = CURRENT_TIME_STAMP
         ) -> None:
-        self.config_info  = read_yaml_file(file_path=config_file_path)
-        self.training_pipeline_config = self.get_training_pipeline_config()
-        self.time_stamp = current_time_stamp
+        try:
+            self.config_info  = read_yaml_file(file_path=config_file_path)
+            self.training_pipeline_config = self.get_training_pipeline_config()
+            self.time_stamp = current_time_stamp
+        except Exception as e:
+            raise SalesException(e,sys) from e
 
 
     def get_data_ingestion_config(self) ->DataIngestionConfig:
-        try: 
+        try:
             artifact_dir = self.training_pipeline_config.artifact_dir
             data_ingestion_artifact_dir=os.path.join(
                 artifact_dir,
@@ -27,7 +30,7 @@ class Configuration:
                 self.time_stamp
             )
             data_ingestion_info = self.config_info[DATA_INGESTION_CONFIG_KEY]
-
+            
             dataset_download_url = data_ingestion_info[DATA_INGESTION_DOWNLOAD_URL_KEY]
             tgz_download_dir = os.path.join(
                 data_ingestion_artifact_dir,
@@ -64,7 +67,15 @@ class Configuration:
             raise SalesException(e,sys) from e
 
     def get_data_validation_config(self) -> DataValidationConfig:
-        pass
+        try:
+            
+            schema_file_path = None
+            data_validation_config = DataValidationConfig(
+                schema_file_path=schema_file_path
+            )
+            return data_validation_config
+        except Exception as e:
+            raise SalesException(e,sys) from e
 
     def get_data_transformation_config(self) -> DataTransformationConfig:
         pass
@@ -90,4 +101,4 @@ class Configuration:
             logging.info(f"Training pipleine config: {training_pipeline_config}")
             return training_pipeline_config
         except Exception as e:
-            raise SalesException(e,sys) from e 
+            raise SalesException(e,sys) from e
