@@ -1,0 +1,60 @@
+columns:
+ Item_Weight: float
+ Item_Visibility: float
+ Item_MRP: float
+ Outlet_Establishment_Year: int
+ Item_Outlet_Sales: float
+
+
+domanin_value:
+
+  Item_Fat_Content:
+    - Low Fat
+    - Regular
+
+  Item_Type:
+    - Dairy
+    - Soft Drinks
+    - Meat
+    - Fruits and Vegetables
+    - Household
+    - Baking Goods
+    - Snack Foods
+    - Frozen Fruits
+    - Breakfast
+    - Health and Hygeine
+    - Hard Drinks
+    - Canned
+    - Breads
+    - Starchy Foods
+    - Seafood
+    - Others
+
+  Outlet_Identifier:
+    - OUT049
+    - OUT018
+    - OUT010
+    - OUT013
+    - OUT027
+    - OUT045
+    - OUT017
+    - OUT046
+    - OUT035
+    - OUT019
+
+  Outlet_Location_type:
+    - Tier 1
+    - Tier 2
+    - Tier 3
+
+  Outlet_Type:
+    - Supermarket Type1
+    - Supermarket Type2
+    - Grocery Store
+    - Supermarket Type3
+
+  Outlet_Size:
+    - Small
+    - Medium
+    - High
+    - nan          
