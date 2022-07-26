@@ -4,6 +4,15 @@ columns:
  Item_MRP: float
  Outlet_Establishment_Year: int
  Item_Outlet_Sales: float
+ Item_Fat_content: Category
+ Item_Type: Category
+ Outlet_Identifier: Category
+ Outlet_Location_Type: Category
+ Outlet_Type: Category
+ Outlet_Size: Category
+
+
+target_column: Item_Outlet_Sales 
 
 
 domanin_value:
